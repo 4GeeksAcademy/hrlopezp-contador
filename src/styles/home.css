@@ -1,0 +1,12 @@
+.letra {
+    font-size: 150px;
+}
+
+.numero {
+    width: 250px;
+    height: 200px;
+}
+
+.opaco {
+    background-color: rgba(255, 255, 255, 0.05);
+}
