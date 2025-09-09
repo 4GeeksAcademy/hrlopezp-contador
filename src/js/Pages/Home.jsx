@@ -6,14 +6,16 @@ import "../../styles/home.css"
 const Home = () => {
 	const [contador, setContador] = useState(0);
     const myString = String(contador).padStart(6, "0").split("");
+    const [stopCounter, setStopCounter] = useState(false);
 
 
      useEffect(() => {
-        let intervaloID = setInterval(() => {
-            setContador(contador + 1)
+        if(stopCounter) return;
+        const intervaloID = setInterval(() => {
+            setContador((prev)=> prev+1)
         }, 1000)  
         return () => clearInterval(intervaloID)
-    }, [contador])
+    }, [contador, stopCounter])
 
 
 	return (
@@ -30,7 +32,9 @@ const Home = () => {
 			</div>
 		</div>
         <div className="m-5 d-flex justify-content-center">
-            <button className="btn btn-danger fs-1 fw-bold px-5">Stop</button>
+            <button className= {`fs-1 fw-bold px-5 btn ${stopCounter ? "btn-success" : "btn-danger"}`}
+            onClick= {()=> setStopCounter(!stopCounter)}>
+            {stopCounter ? "Start" : "Stop"}</button>
         </div>
 	</div>
 	);
